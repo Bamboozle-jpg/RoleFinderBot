@@ -38,7 +38,7 @@ function searchRoles (role, msg) {
         if (roles[ i ].includes(role)) {
             //formatting happens here
             roleString = roleString.concat(j + ". " + roles[ i ] + ", \n");
-            roleArray.push(role);
+            roleArray.push(roles[i]);
             j++;
         }
     }
@@ -72,10 +72,10 @@ function getSelectedChoice(msg, member) {
     //camelcase babyyy
     for (i = 0; i < roleArray.length; i++) {
         if (!msg.author.bot && msg.content == i) {
-            // const role = msg.guild.roles.cache.find(roles => roles.name === roleArray[i]);
-            // console.log(role);
-            // msg.author.addRole(role);
-            msg.channel.send('You have joined the ' + role + 'channel!');
+            var role = msg.guild.roles.cache.find(role => role.name === roleArray[i-1]);
+            console.log(role);
+            msg.member.roles.add(role);
+            msg.channel.send('You have joined the ' + role.name + ' channel!');
             runninglength = 0;
             roleArray = [];
         }
