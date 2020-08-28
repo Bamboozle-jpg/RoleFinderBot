@@ -72,7 +72,7 @@ function setSelectedChoice(msg, member) {
     //camelcase babyyy
     for (i = 0; i < roleArray.length; i++) {
         if (!msg.author.bot && msg.content == i) {
-            var role = msg.guild.roles.cache.find(role => role.name === roleArray[msg.content + 1]);
+            var role = msg.guild.roles.cache.find(role => role.name === roleArray[msg.content - 1]);
             console.log(role);
             msg.member.roles.add(role);
             msg.channel.send('You have joined the ' + role.name + ' channel!');
