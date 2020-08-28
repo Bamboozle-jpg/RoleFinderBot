@@ -68,16 +68,17 @@ function searchRoles (role, msg) {
 
 //});
 
-function getSelectedChoice(msg, member) {
+function setSelectedChoice(msg, member) {
     //camelcase babyyy
     for (i = 0; i < roleArray.length; i++) {
         if (!msg.author.bot && msg.content == i) {
-            var role = msg.guild.roles.cache.find(role => role.name === roleArray[i-1]);
+            var role = msg.guild.roles.cache.find(role => role.name === roleArray[msg.content + 1]);
             console.log(role);
             msg.member.roles.add(role);
             msg.channel.send('You have joined the ' + role.name + ' channel!');
             runninglength = 0;
             roleArray = [];
+            return;
         }
     }
 }
@@ -95,7 +96,7 @@ bot.on('message', msg=> {
             console.log("search role worked");
         }
     } else {
-        getSelectedChoice(msg, member);
+        setSelectedChoice(msg, member);
     }
 })
 
